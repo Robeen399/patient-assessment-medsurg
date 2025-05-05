@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Assessment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            width: 80%;
+            max-width: 800px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .group {
+            margin-bottom: 20px;
+        }
+
+        .group label {
+            font-size: 14px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .checkboxes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 5px;
+        }
+
+        .checkboxes label {
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+
+        .checkboxes input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        .group textarea,
+        .group input[type="time"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: #fafafa;
+        }
+
+        .group textarea {
+            height: 80px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .summary-container {
+            margin-top: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background-color: #f9f9f9;
+        }
+
+        .summary-container textarea {
+            width: 100%;
+            height: 200px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            background-color: #fff;
+            color: #333;
+            resize: none;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="container">
+        <h1>Patient Assessment</h1>
+
+      <div class="group" id="type-of-care-group">
+    <label>1. Type of Care:</label>
+    <div class="checkboxes">
+        <label><input type="checkbox" name="type_of_care" value="Admission"> Admission</label>
+        <label><input type="checkbox" name="type_of_care" value="Continuity of care"> Continuity of Care</label>
+        <label><input type="checkbox" name="type_of_care" value="Transfer"> Transfer</label>
+    </div>
+</div>
+
+<div class="group" id="time-of-care-group">
+    <label>2. Time of Care:</label>
+    <input type="time" name="time_of_care">
+</div>
+
+<div class="group" id="reason-for-admission-group">
+    <label>3. Reason for Admission:</label>
+    <textarea name="reason_for_admission"></textarea>
+</div>
+
+<div class="group" id="precaution-group">
+    <label>4. Precaution Type:</label>
+    <div class="checkboxes">
+        <label><input type="checkbox" name="precaution_type" value="Standard"> Standard</label>
+        <label><input type="checkbox" name="precaution_type" value="Droplet"> Droplet</label>
+        <label><input type="checkbox" name="precaution_type" value="Airborne"> Airborne</label>
+        <label><input type="checkbox" name="precaution_type" value="Contact"> Contact</label>
+    </div>
+</div>
+
+      <div class="group" id="orientation-group">
+    <label>5. Orientation:</label>
+    <div class="checkboxes">
+        <label><input type="checkbox" name="orientation" value="A&Ox1"> A&Ox1</label>
+        <label><input type="checkbox" name="orientation" value="A&Ox2"> A&Ox2</label>
+        <label><input type="checkbox" name="orientation" value="A&Ox3"> A&Ox3</label>
+        <label><input type="checkbox" name="orientation" value="A&Ox4"> A&Ox4</label>
+        <label><input type="checkbox" name="orientation" value="Non-Verbal"> Non-Verbal</label>
+    </div>
+</div>
+
+<div class="group" id="behavior-mood-group">
+    <label>6. Behavior/Mood:</label>
+    <div class="checkboxes">
+        <label><input type="checkbox" name="behavior_mood" value="Calm"> Calm</label>
+        <label><input type="checkbox" name="behavior_mood" value="Cooperative"> Cooperative</label>
+        <label><input type="checkbox" name="behavior_mood" value="Anxious"> Anxious</label>
+        <label><input type="checkbox" name="behavior_mood" value="Agitated"> Agitated</label>
+        <label><input type="checkbox" name="behavior_mood" value="Confused"> Confused</label>
+        <label><input type="checkbox" name="behavior_mood" value="Forgetful"> Forgetful</label>
+    </div>
+</div>
+
+<div class="group" id="requests-complaints-group">
+    <label>7. Requests/Complaints:</label>
+    <div class="checkboxes">
+        <label><input type="checkbox" name="requests" value="Chest pain"> Chest pain</label>
+        <label><input type="checkbox" name="requests" value="SOB"> Shortness of Breath</label>
+        <label><input type="checkbox" name="requests" value="Pain"> Pain</label>
+        <label><input type="checkbox" name="requests" value="Nausea"> Nausea</label>
+        <label><input type="checkbox" name="requests" value="Headache"> Headache</label>
+        <label><input type="checkbox" name="requests" value="Denies"> Denies</label>
+    </div>
+</div>
+
+<div class="group" id="diet-group">
+    <label>8. Diet:</label>
+    <div class="checkboxes">
+        <label><input type="checkbox" name="diet" value="Regular Diet"> Regular Diet</label>
+        <label><input type="checkbox" name="diet" value="NA2gm"> NA2gm</label>
+        <label><input type="checkbox" name="diet" value="DM diet"> DM diet</label>
+        <label><input type="checkbox" name="diet" value="Clear Liquid"> Clear Liquid</label>
+        <label><input type="checkbox" name="diet" value="Full Liquid"> Full Liquid</label>
+        <label><input type="checkbox" name="diet" value="Pureed"> Pureed</label>
+        <label><input type="checkbox" name="diet" value="Low residue (Low Fiber)"> Low residue (Low Fiber)</label>
+        <label><input type="checkbox" name="diet" value="Heart-Healthy"> Heart-Healthy</label>
+        <label><input type="checkbox" name="diet" value="NPO"> NPO (Nil by Mouth)</label>
+        <label><input type="checkbox" name="diet" value="Dysphagia"> Dysphagia</label>
+    </div>
+</div>
+
+        <div class="group" id="meds-group">
+    <label>9. How Patient Takes Meds:</label>
+    <div class="checkboxes">
+        <label><input type="checkbox" name="meds" value="Whole"> Whole</label>
+        <label><input type="checkbox" name="meds" value="Crushed"> Crushed</label>
+        <label><input type="checkbox" name="meds" value="With Water"> With Water</label>
+        <label><input type="checkbox" name="meds" value="With Apple Sauce"> With Apple Sauce</label>
+        <label><input type="checkbox" name="meds" value="With Pudding"> With Pudding</label>
+        <label><input type="checkbox" name="meds" value="With Ice Cream"> With Ice Cream</label>
+        <label><input type="checkbox" name="meds" value="With Juice"> With Juice</label>
+    </div>
+</div>
+
+<div class="group" id="med-knowledge-group">
+    <label>10. Medication Knowledge:</label>
+    <div class="checkboxes">
+        <label><input type="checkbox" name="med_knowledge" value="Med compliant"> Med compliant</label>
+        <label><input type="checkbox" name="med_knowledge" value="Good understanding"> Good understanding</label>
+    </div>
+</div>
+
+<div class="group" id="lung-sounds-group">
+    <label>11. Lung Sounds:</label>
+    <div class="checkboxes">
+        <label><input type="checkbox" name="lung_sounds" value="LSCTAB"> LSCTAB</label>
+        <label><input type="checkbox" name="lung_sounds" value="LSDIMB"> LSDIMB</label>
+        <label><input type="checkbox" name="lung_sounds" value="Expiratory Wheezing"> Expiratory Wheezing</label>
+        <label><input type="checkbox" name="lung_sounds" value="Rhonchi"> Rhonchi</label>
+        <label><input type="checkbox" name="lung_sounds" value="Crackles"> Crackles</label>
+    </div>
+</div>
+
+<div class="group" id="oxygen-use-group">
+    <label>12. Oxygen Use:</label>
+    <div class="checkboxes">
+        <label><input type="checkbox" name="oxygen_use" value="Room air"> Room air</label>
+        <label><input type="checkbox" name="oxygen_use" value="Nasal cannula"> Nasal cannula</label>
+        <label><input type="checkbox" name="oxygen_use" value="High flow nasal cannula"> High flow nasal cannula</label>
+        <label><input type="checkbox" name="oxygen_use" value="Venturi mask"> Venturi mask</label>
+        <label><input type="checkbox" name="oxygen_use" value="Simple Mask"> Simple Mask</label>
+        <label><input type="checkbox" name="oxygen_use" value="Non-rebreather"> Non-rebreather</label>
+    </div>
+    <input type="text" id="o2_flow_rate" placeholder="Oxygen flow rate (L/min)">
+</div>
+
+<div class="group" id="iv-access-group">
+    <label for="iv_access">13. Intravenous Access and Infusions:</label><br>
+    <input type="text" id="iv_access" style="width: 100%;" placeholder="Enter IV access details, e.g., 'Left forearm IV, NS @ 75 mL/hr'">
+</div>
+
+<!-- Group 14: Abdomen -->
+<div class="group" id="abdomen-group">
+  <label>14. Abdomen:</label>
+  <div class="checkboxes">
+    <label><input type="checkbox" name="abdomen" value="Normal"> Normal</label>
+    <label><input type="checkbox" name="abdomen" value="Slightly distended"> Slightly distended</label>
+    <label><input type="checkbox" name="abdomen" value="Distended"> Distended</label>
+    <label><input type="checkbox" name="abdomen" value="Tender"> Tender</label>
+    <label><input type="checkbox" name="abdomen" value="Bowel sounds active"> Bowel sounds active</label>
+    <label><input type="checkbox" name="abdomen" value="Bowel sounds hypoactive"> Bowel sounds hypoactive</label>
+    <label><input type="checkbox" name="abdomen" value="No bowel sounds"> No bowel sounds</label>
+  </div>
+</div>
+
+<!-- Group 15: Last Bowel Movement and Bowel Status -->
+<div class="group" id="bowel-status-group">
+  <label for="bowelStatusAndDate">15. Last Bowel Movement and Bowel Status:</label><br>
+  <input type="text" id="bowelStatusAndDate" name="bowel_status_and_date"
+         style="width: 100%;" 
+         placeholder="e.g. 01/01/2021 Normal, Loose, Brown, Red, Melena, Constipation">
+</div>
+
+<!-- Group 16: Urinary -->
+<div class="group" id="urinary-group">
+  <label>16. Urinary:</label>
+  <div class="checkboxes">
+    <label><input type="checkbox" name="urinary" value="Continent"> Continent</label>
+    <label><input type="checkbox" name="urinary" value="Incontinent"> Incontinent</label>
+    <label><input type="checkbox" name="urinary" value="Foley catheter"> Foley catheter</label>
+    <label><input type="checkbox" name="urinary" value="Suprapubic catheter"> Suprapubic catheter</label>
+    <label><input type="checkbox" name="urinary" value="Purewick"> Purewick</label>
+    <label><input type="checkbox" name="urinary" value="Condom cath"> Condom cath</label>
+    <label><input type="checkbox" name="urinary" value="Brief"> Brief</label>
+  </div>
+  <label for="catheterDetails">Catheter details (if applicable):</label>
+  <input type="text" id="catheterDetails" placeholder="e.g. Foley inserted 5/2, draining yellow urine" style="width: 100%;">
+</div>
+
+<!-- Group 17: Urine Characteristics -->
+<div class="group" id="urine-characteristics-group">
+  <label>17. Urine Characteristics:</label>
+  <div class="checkboxes">
+    <label><input type="checkbox" name="urine_characteristics" value="Clear"> Clear</label>
+    <label><input type="checkbox" name="urine_characteristics" value="Yellow"> Yellow</label>
+    <label><input type="checkbox" name="urine_characteristics" value="Amber"> Amber</label>
+    <label><input type="checkbox" name="urine_characteristics" value="Orange"> Orange</label>
+    <label><input type="checkbox" name="urine_characteristics" value="Pink"> Pink</label>
+    <label><input type="checkbox" name="urine_characteristics" value="Red"> Red</label>
+    <label><input type="checkbox" name="urine_characteristics" value="Cloudy"> Cloudy</label>
+    <label><input type="checkbox" name="urine_characteristics" value="Foul odor"> Foul odor</label>
+  </div>
+</div>
+
+<!-- Group 18: Mobility -->
+<div class="group" id="mobility-group">
+  <label>18. Mobility:</label>
+  <div class="checkboxes">
+    <label><input type="checkbox" name="mobility" value="Independent"> Independent</label>
+    <label><input type="checkbox" name="mobility" value="Standby assist"> Standby assist</label>
+    <label><input type="checkbox" name="mobility" value="1 Assist"> 1 Assist</label>
+    <label><input type="checkbox" name="mobility" value="2 Assist"> 2 Assist</label>
+    <label><input type="checkbox" name="mobility" value="Rolling Walker"> Rolling Walker</label>
+    <label><input type="checkbox" name="mobility" value="Cane"> Cane</label>
+    <label><input type="checkbox" name="mobility" value="Wheelchair"> Wheelchair</label>
+    <label><input type="checkbox" name="mobility" value="Bedbound"> Bedbound</label>
+    <label><input type="checkbox" name="mobility" value="Other" onchange="toggleOther('mobility_other', this)"> Other</label>
+    <input type="text" id="mobility_other" class="hidden" placeholder="Specify other mobility">
+  </div>
+</div>
+
+<!-- Group 19: Safety Measures -->
+<div class="group" id="safety-group">
+  <label>19. Safety Measures:</label>
+  <div class="checkboxes">
+    <label><input type="checkbox" class="safety-checkbox" name="safetyMeasures" value="Bed in lowest position"> Bed in lowest position</label>
+    <label><input type="checkbox" class="safety-checkbox" name="safetyMeasures" value="Bed alarm on"> Bed alarm on</label>
+    <label><input type="checkbox" class="safety-checkbox" name="safetyMeasures" value="Call bell in reach"> Call bell in reach</label>
+    <label><input type="checkbox" class="safety-checkbox" name="safetyMeasures" value="All needs met at the moment"> All needs met at the moment</label>
+    <label><input type="checkbox" class="safety-checkbox" name="safetyMeasures" value="All questions answered"> All questions answered</label>
+    <label><input type="checkbox" class="safety-checkbox" name="safetyMeasures" value="Turn and repositioning Q2HR"> Turn and repositioning Q2HR</label>
+  </div>
+</div>
+
+        <!-- Summary Button -->
+        <button id="generateSummary">Generate Summary</button>
+
+        <!-- Summary Output -->
+        <div class="summary-container">
+            <textarea id="summaryOutput" readonly></textarea>
+        </div>
+    </div>
+
+   <script>
+document.getElementById('generateSummary').addEventListener('click', function () {
+    let summaryParts = [];
+
+    // Group 1: Type of Care
+    const typeOfCare = [...document.querySelectorAll('#type-of-care-group input[name="type_of_care"]:checked')].map(cb => cb.value);
+    if (typeOfCare.includes("Admission")) summaryParts.push("Admitted patient");
+    if (typeOfCare.includes("Continuity of care")) summaryParts.push("Assumed care of patient");
+    if (typeOfCare.includes("Transfer")) summaryParts.push("Patient transferred from the (DEPARTMENT)");
+
+    // Group 2: Time of Care
+    const timeOfCare = document.querySelector('#time-of-care-group input[name="time_of_care"]').value;
+    if (timeOfCare) summaryParts.push(`around ${timeOfCare}hr`);
+
+    // Group 3: Reason for Admission
+    const reason = document.querySelector('#reason-for-admission-group textarea[name="reason_for_admission"]').value.trim();
+    if (reason) summaryParts.push(`Admitted d/t ${reason}.`);
+
+    // Group 4: Precaution Type
+    const precautions = [...document.querySelectorAll('#precaution-group input[name="precaution_type"]:checked')].map(cb => cb.value);
+    if (precautions.length > 0) summaryParts.push(`on ${precautions.join(", ")} precautions.`);
+
+    // Group 5: Orientation
+    const orientation = [...document.querySelectorAll('#orientation-group input[name="orientation"]:checked')].map(cb => cb.value);
+    if (orientation.length > 0) summaryParts.push(`${orientation.join(", ")}.`);
+
+            // Group 6: Behavior/Mood
+const mood = [...document.querySelectorAll('#behavior-mood-group input[name="behavior_mood"]:checked')].map(cb => cb.value);
+if (mood.length > 0) {
+    summaryParts.push(`${mood.join(", ")}.`);
+}
+
+// Group 7: Requests/Complaints
+const complaints = [...document.querySelectorAll('#requests-complaints-group input[name="requests"]:checked')].map(cb => cb.value);
+if (complaints.length > 0) {
+    if (complaints.includes("Denies")) {
+        summaryParts.push("Denies CP/SOB or any new concerns.");
+    } else {
+        summaryParts.push(`The patient is complaining about: ${complaints.join(", ")}.`);
+    }
+}
+
+// Group 8: Diet
+const diet = [...document.querySelectorAll('#diet-group input[name="diet"]:checked')].map(cb => cb.value);
+if (diet.length > 0) {
+    summaryParts.push(`${diet.join(", ")}.`);
+}
+
+// Group 9: How Patient Takes Meds
+const meds = [...document.querySelectorAll('#meds-group input[name="meds"]:checked')].map(cb => cb.value);
+
+const forms = ["Whole", "Crushed"];
+const methods = ["With Water", "With Apple Sauce", "With Pudding", "With Ice Cream", "With Juice"];
+
+const selectedForm = meds.find(val => forms.includes(val));
+const selectedMethod = meds.find(val => methods.includes(val));
+
+if (selectedForm && selectedMethod) {
+    summaryParts.push(`Takes meds ${selectedForm.toLowerCase()} ${selectedMethod.toLowerCase()}.`);
+} else if (selectedForm) {
+    summaryParts.push(`Takes meds ${selectedForm.toLowerCase()}.`);
+} else if (meds.length > 0) {
+    summaryParts.push(`Takes meds ${meds.join(", ").toLowerCase()}.`);
+}
+
+// Group 10: Medication Knowledge
+const medKnowledge = [...document.querySelectorAll('#med-knowledge-group input[name="med_knowledge"]:checked')].map(cb => cb.value);
+if (medKnowledge.includes("Med compliant")) {
+    summaryParts.push("med compliant.");
+}
+if (medKnowledge.includes("Good understanding")) {
+    summaryParts.push("Patient demonstrates good understanding of their medications.");
+}
+
+
+ // Group 11: Lung Sounds
+const lungSounds = [...document.querySelectorAll('#lung-sounds-group input[name="lung_sounds"]:checked')].map(cb => cb.value);
+if (lungSounds.length > 0) {
+  summaryParts.push(`${lungSounds.join(', ')}.`);
+}
+
+// Group 12: Oxygen Use
+const o2Values = [...document.querySelectorAll('#oxygen-use-group input[name="oxygen_use"]:checked')].map(cb => cb.value);
+const o2FlowRate = document.getElementById('o2_flow_rate').value.trim();
+
+if (o2Values.length > 0) {
+  let o2Summary = o2Values.join(', ');
+  if (o2FlowRate) {
+    o2Summary += ` (${o2FlowRate})`;
+  }
+  summaryParts.push(`${o2Summary}.`);
+}
+
+// Group 13: Intravenous Access and Infusions
+const ivAccess = document.getElementById('iv_access').value.trim();
+if (ivAccess) {
+  summaryParts.push(ivAccess.endsWith('.') ? ivAccess : `${ivAccess}.`);
+}
+
+// Group 14: Abdomen
+const abdomenCheckboxes = [...document.querySelectorAll('#abdomen-group input[name="abdomen"]:checked')].map(cb => cb.value);
+if (abdomenCheckboxes.includes("Normal")) {
+  summaryParts.push("abdomen NT/ND, Bowel Sounds +4Q");
+}
+if (abdomenCheckboxes.includes("Slightly distended")) summaryParts.push("Abdomen slightly distended");
+if (abdomenCheckboxes.includes("Distended")) summaryParts.push("Abdomen distended");
+if (abdomenCheckboxes.includes("Tender")) summaryParts.push("Abdomen tender");
+if (abdomenCheckboxes.includes("Bowel sounds active")) summaryParts.push("BS are active in all 4Q");
+if (abdomenCheckboxes.includes("Bowel sounds hypoactive")) summaryParts.push("BS hypoactive in all 4Q");
+if (abdomenCheckboxes.includes("No bowel sounds")) summaryParts.push("No bowel sounds present");
+
+// Group 15: Last Bowel Movement
+const bowelStatusAndDate = document.querySelector('#bowel-status-group input[name="bowel_status_and_date"]').value.trim();
+if (bowelStatusAndDate) {
+  summaryParts.push(`LBM ${bowelStatusAndDate}`);
+}
+
+// === Group 16: Urinary ===
+const urinary = [];
+document.querySelectorAll('#urinary-group input[name="urinary"]:checked').forEach(cb => {
+  switch (cb.value) {
+    case 'Continent': urinary.push("Patient is continent"); break;
+    case 'Incontinent': urinary.push("Patient is incontinent"); break;
+    case 'Foley catheter': urinary.push("Foley catheter in place"); break;
+    case 'Suprapubic catheter': urinary.push("suprapubic catheter in place"); break;
+    case 'Purewick': urinary.push("Purewick device in place"); break;
+    case 'Condom cath': urinary.push("condom catheter in place"); break;
+    case 'Brief': urinary.push("patient uses briefs"); break;
+  }
+});
+
+const catheterDetails = document.querySelector('#catheterDetails').value.trim();
+if (urinary.length > 0) summaryParts.push(...urinary);
+if (catheterDetails) summaryParts.push(`Catheter details: ${catheterDetails}`);
+
+// === Group 17: Urine Characteristics ===
+const urineValues = [...document.querySelectorAll('#urine-characteristics-group input[name="urine_characteristics"]:checked')].map(cb => cb.value);
+
+if (urineValues.includes("Clear") && urineValues.includes("Yellow") && urineValues.length === 2) {
+  summaryParts.push("Urine: CYU");
+} else {
+  const urineCharacteristics = urineValues.map(val => val.toLowerCase());
+  if (urineCharacteristics.length > 0) {
+    summaryParts.push("Urine " + urineCharacteristics.join(", ") + ".");
+  }
+}
+
+// === Group 18: Mobility ===
+const mobilitySelections = [...document.querySelectorAll('#mobility-group input[name="mobility"]:checked')].map(cb => cb.value);
+const mobilityOther = document.querySelector('#mobility_other').value.trim();
+if (mobilityOther) mobilitySelections.push(mobilityOther);
+if (mobilitySelections.length > 0) {
+  summaryParts.push("Walks " + mobilitySelections.join(" and ") + ".");
+}
+
+// === Group 19: Safety Measures ===
+const safetySelections = [...document.querySelectorAll('#safety-group input[name="safetyMeasures"]:checked')].map(cb => cb.value);
+if (safetySelections.length > 0) {
+  summaryParts.push(safetySelections.join(", ") + ".");
+}
+
+console.log("Final summaryParts:", summaryParts);
+document.getElementById("summaryOutput").value = summaryParts.join(" ");
+
+});
+</script>
+</body>
+</html>
